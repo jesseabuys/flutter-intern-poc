@@ -30,15 +30,15 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyLoginPage(title: 'Login Screen'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MyLoginPage extends StatefulWidget {
+  const MyLoginPage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
+  // Login page for the application It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
 
@@ -50,22 +50,11 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyLoginPage> createState() => _MyLoginPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyLoginPageState extends State<MyLoginPage> {
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
