@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_poc/services/authservice.dart';
+import 'package:flutter_application_poc/screens/MainMenuPage.dart';
+import 'package:flutter_application_poc/SharedWidgets/GradientScaffold.dart';
 
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({super.key});
@@ -45,9 +47,12 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
       if (success) {
       // Add in functionality to send to main menu
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Login succesful!')),
-        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+          builder: (context) => const MainMenuPage(),
+    ),
+  );
 
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -73,20 +78,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return GradientScaffold( 
       // Use safearea to prevent the body from being hidden by system ui like phone notches.
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color.fromARGB(255, 221, 225, 238),
-            Color.fromARGB(255, 191, 188, 235),
-            Color.fromARGB(255, 180, 146, 236),
-          ],
-        ),
-      ),  
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
@@ -124,7 +117,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
                         prefixIcon: Icon(Icons.email_outlined),
                         border: OutlineInputBorder(),
                       ), 
-                      // validatopr that our form key uses to check if a users input is valid
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your email address.';
@@ -182,7 +174,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
             ), 
           ),
         ),
-      ),
-    );
+      );
   }
 }
