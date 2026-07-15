@@ -46,7 +46,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
       if (!mounted) return;
 
       if (success) {
-      // Add in functionality to send to main menu
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -79,7 +78,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
     return GradientScaffold( 
-      // Use safearea to prevent the body from being hidden by system ui like phone notches.
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
