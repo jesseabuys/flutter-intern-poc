@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Class that creates a container with a shadow that is used for our text boxes
 class WhiteContainer extends StatelessWidget {
   final Widget child;
 

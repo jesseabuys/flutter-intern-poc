@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Class for doing the gradient backgrounds of each screen for consistency
 class GradientScaffold extends StatelessWidget {
   final Widget child;
   final PreferredSizeWidget? appBar;
@@ -15,6 +16,8 @@ class GradientScaffold extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,

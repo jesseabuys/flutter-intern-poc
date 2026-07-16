@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_poc/SharedWidgets/GradientScaffold.dart';
 import 'package:flutter_application_poc/SharedWidgets/WhiteContainer.dart';
 
+// Page containing our details as well as some text forms that a user can fill in to send a message.
 class ContactUsPage extends StatefulWidget {
   const ContactUsPage({super.key});
 
@@ -17,6 +18,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
   final _messageController = TextEditingController();
   final ExpansibleController controller = ExpansibleController();
 
+  // Keeps track of whether the user has pressed the send message button.
   bool _isSending = false;
 
   @override
@@ -27,6 +29,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
     super.dispose();
   }
 
+  // Method for when we send a message.
   Future<void> _handleSend() async {
     if (!_formKey.currentState!.validate()) return;
 
@@ -35,6 +38,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
+      //Mounting checking to see if anything is out of place
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Message sent! We\'ll get back to you soon.')),
@@ -56,7 +60,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
 @override
   Widget build(BuildContext context) {
     return GradientScaffold(
-        appBar: AppBar(), 
+        appBar: AppBar(title: const Text('Contact Us')), 
         child: SafeArea(
           child: Center(
             child: SingleChildScrollView(
@@ -81,7 +85,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                       ],
                     ),
                     child: const Text(
-                      'Contact Us',
+                      'Get in touch',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 36,
