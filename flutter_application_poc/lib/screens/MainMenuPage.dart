@@ -18,17 +18,13 @@ Widget build(BuildContext context) {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-
-          const CircleAvatar(
-            radius: 50,
-            backgroundColor: Colors.indigo,
-            child: Icon(
-              Icons.person,
-              size: 60,
-              color: Colors.white,
+          
+          Center(
+            child: const CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/proficon.jpg'),
             ),
           ),
-
           const SizedBox(height: 25),
 
         // Welcome message
@@ -41,7 +37,7 @@ Widget build(BuildContext context) {
             ),
           ),
 
-        const SizedBox(height: 50),
+          const SizedBox(height: 50),
 
           _MenuCard(
             icon: Icons.person,
