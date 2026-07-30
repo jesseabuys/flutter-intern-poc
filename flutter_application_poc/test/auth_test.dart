@@ -49,5 +49,9 @@ void main() {
       expect(result, isFalse);
     });    
 
+    test('Always false for testing CI/CD', () async {
+      bool fail = false;
+      expect(bool, isTrue);
+    });
   });
 }
