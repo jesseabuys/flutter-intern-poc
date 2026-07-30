@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_poc/SharedWidgets/GradientScaffold.dart';
-import 'package:flutter_application_poc/SharedWidgets/WhiteContainer.dart';
+import 'package:flutter_application_poc/SharedWidgets/message.dart';
+import 'package:flutter_application_poc/services/validation_service.dart';
+import 'package:flutter_application_poc/SharedWidgets/gradient_scaffold.dart';
+import 'package:flutter_application_poc/SharedWidgets/white_container.dart';
+import 'package:flutter_application_poc/screens/main_menu_page.dart';
 
 // Page containing our details as well as some text forms that a user can fill in to send a message.
 class ContactUsPage extends StatefulWidget {
@@ -37,11 +40,16 @@ class _ContactUsPageState extends State<ContactUsPage> {
 
     try {
       await Future.delayed(const Duration(seconds: 2));
-
       //Mounting checking to see if anything is out of place
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Message sent! We\'ll get back to you soon.')),
+      //await Future.delayed(const Duration(seconds: 1));
+      //Messenger.showMessage(context, "Message received. We'll get back to you soon.");
+      //await Future.delayed(const Duration(seconds: 1));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MainMenuPage(),
+        ),
       );
 
       _nameController.clear();
@@ -144,12 +152,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                           prefixIcon: Icon(Icons.person_3_outlined),
 
                         ), 
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your name.';
-                          }
-                          return null;
-                        },
+                        validator: ContactValidator.validateName
                       ),
                     ),
                     const SizedBox(height: 18),
@@ -163,12 +166,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                           prefixIcon: Icon(Icons.email_outlined),
 
                         ), 
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your email address.';
-                          }
-                          return null;
-                        },
+                        validator: ContactValidator.validateEmail
                       ),
                     ),
                     const SizedBox(height: 18),
@@ -184,12 +182,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                           contentPadding: EdgeInsets.all(16),
                         ), 
                         // validator that our form key uses to check if a users input is valid
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your message.';
-                          }
-                          return null;
-                        },
+                        validator: ContactValidator.validateMessage
                       ),
                     ),
                     const SizedBox(height: 9),
