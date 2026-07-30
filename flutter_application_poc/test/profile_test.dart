@@ -25,8 +25,13 @@ void main() {
       find.byType(TextFormField).at(2),
       '0731515914',
     );
+        // Scroll to button
+    final saveButton = find.text('Save').first;
 
-    await tester.tap(find.text('Save'));
+    await tester.ensureVisible(saveButton);
+
+    // Tap send
+    await tester.tap(saveButton);
     await tester.pump();
 
   });
