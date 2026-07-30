@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_poc/SharedWidgets/message.dart';
 import 'package:flutter_application_poc/services/validation_service.dart';
 import 'package:flutter_application_poc/SharedWidgets/gradient_scaffold.dart';
 import 'package:flutter_application_poc/SharedWidgets/white_container.dart';

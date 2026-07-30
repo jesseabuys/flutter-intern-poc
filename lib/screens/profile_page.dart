@@ -25,6 +25,8 @@ class _ProfilePageState extends State<ProfilePage> {
   }
   
   // We dispose controllers when we are done with the screen
+
+  @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
@@ -55,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     // Check mount and create method ....
     await UserProfile.saveProfile(profile);
-
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("Profile Saved")),
     );
