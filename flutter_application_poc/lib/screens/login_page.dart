@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_poc/services/authservice.dart';
-import 'package:flutter_application_poc/screens/MainMenuPage.dart';
-import 'package:flutter_application_poc/SharedWidgets/GradientScaffold.dart';
+import 'package:flutter_application_poc/services/validation_service.dart';
+import 'package:flutter_application_poc/SharedWidgets/white_container.dart';
+import 'package:flutter_application_poc/SharedWidgets/message.dart';
+import 'package:flutter_application_poc/services/auth_service.dart';
+import 'package:flutter_application_poc/screens/main_menu_page.dart';
+import 'package:flutter_application_poc/SharedWidgets/gradient_scaffold.dart';
 
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({super.key});
@@ -50,13 +53,11 @@ class _MyLoginPageState extends State<MyLoginPage> {
           context,
           MaterialPageRoute(
           builder: (context) => const MainMenuPage(),
-    ),
-  );
+          ),
+        );
 
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Invalid email or password.')),
-        );
+        Messenger.showMessage(context, 'Invalid email or password.');
       }
     
     // Catch errors
@@ -88,17 +89,23 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-
-                    const Text('Flutter POC',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold),
-                    ),
+                      
+                      const Text(
+                        'Flutter POC',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.indigo,
+                          fontSize: 48,
+                          fontWeight: FontWeight(1000),
+                        ),
+                      ),
+                    
                     const SizedBox(height: 20),
 
-                    const Icon(Icons.lock_outline, size:90, color: Colors.indigo),
+                    const Icon(Icons.login, size:110, color: Colors.indigo),
+
                     const SizedBox(height: 18),
+
                     const Text(
                       'Login',
                       textAlign: TextAlign.center,
@@ -107,48 +114,42 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     const SizedBox(height: 36),
                     
                     //Email field
-                    TextFormField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        labelText: 'Email Address:',
-                        prefixIcon: Icon(Icons.email_outlined),
-                        border: OutlineInputBorder(),
-                      ), 
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email address.';
-                        }
-                        return null;
-                      },
+                    WhiteContainer(
+                      child: TextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(
+                          labelText: 'Email Address:',
+                          prefixIcon: Icon(Icons.email_outlined),
+                          border: OutlineInputBorder(),
+                        ), 
+                        validator: ContactValidator.validateEmail
+                      ),
                     ),
                     const SizedBox(height: 18),
 
-                    TextFormField(
-                      controller: _passwordController,
-                      obscureText: _obscurePassword,
-                      decoration: InputDecoration(
-                        labelText: 'Password:',
-                        prefixIcon: Icon(Icons.lock_clock_outlined),
-                        border: OutlineInputBorder(),
-                        suffixIcon: IconButton(
-                          icon: Icon(_obscurePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility),
-                            onPressed: () {
-                              setState(() => _obscurePassword = !_obscurePassword);
-                            },
+                    WhiteContainer(
+                      child: TextFormField(
+                        controller: _passwordController,
+                        obscureText: _obscurePassword,
+                        decoration: InputDecoration(
+                          labelText: 'Password:',
+                          prefixIcon: Icon(Icons.lock_clock_outlined),
+                          border: OutlineInputBorder(),
+                          suffixIcon: IconButton(
+                            icon: Icon(_obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                              onPressed: () {
+                                setState(() => _obscurePassword = !_obscurePassword);
+                              },
                           ),
-                      ), 
+                        ),    
                       // validatopr that our form key uses to check if a users input is valid
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password.';
-                        }
-                        return null;
-                      },
+                          validator: ContactValidator.validatePassword
+                      ),
                     ),
-                    const SizedBox(height: 9),
+                    const SizedBox(height: 18),
 
                     //Login button
                     ElevatedButton(
