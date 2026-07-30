@@ -7,9 +7,9 @@ class UserProfile {
   String number;
 
   UserProfile({
-    required this.name,
-    required this.email,
-    required this.number,
+    this.name = 'John Doe',
+    this.email = 'JohnDoe@emails.com',
+    this.number = '',
   });
 
   // Shared preferences are used to store the information
