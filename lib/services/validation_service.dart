@@ -1,3 +1,5 @@
+import 'package:emails_validator/emails_validator.dart';
+
 class ContactValidator {
   static String? validateName(String? value) {
     if (value == null || value.isEmpty) {
@@ -11,7 +13,7 @@ class ContactValidator {
       return 'Please enter your email address.';
     }
 
-    if (!value.contains('@') || !value.contains('.')) {
+    if (!EmailsValidator.validate(value)) {
       return 'Please enter a valid email.';
     }
 
