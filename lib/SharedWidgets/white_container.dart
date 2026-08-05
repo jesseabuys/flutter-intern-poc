@@ -11,18 +11,11 @@ class WhiteContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.7),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 8,
-            offset: Offset(0, 4),
-            color: Colors.black26,
-          ),
-        ],
-      ),
+    return Material(
+      color: Colors.white.withValues(alpha: 0.7),
+      elevation: 4,
+      borderRadius: BorderRadius.circular(12),
+      clipBehavior: Clip.antiAlias,
       child: child,
     );
   }
