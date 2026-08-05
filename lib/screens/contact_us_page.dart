@@ -162,6 +162,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   WhiteContainer(
                     child: TextFormField(
                       controller: _nameController,
+                      enabled: !_isSending,
                       decoration: _decoration('Your Name', Icons.person_outline),
                       validator: ContactValidator.validateName,
                     ),
@@ -171,6 +172,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   WhiteContainer(
                     child: TextFormField(
                       controller: _emailController,
+                      enabled: !_isSending,
                       keyboardType: TextInputType.emailAddress,
                       decoration: _decoration('Email Address', Icons.email_outlined),
                       validator: ContactValidator.validateEmail,
@@ -181,6 +183,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   WhiteContainer(
                     child: TextFormField(
                       controller: _messageController,
+                      enabled: !_isSending,
                       maxLines: 5,
                       decoration: _decoration('Your Message', Icons.message_outlined)
                           .copyWith(alignLabelWithHint: true),

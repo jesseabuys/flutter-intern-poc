@@ -129,6 +129,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     WhiteContainer(
                       child: TextFormField(
                         controller: _emailController,
+                        enabled: !_isLoading,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
                           labelText: 'Email Address:',
@@ -143,6 +144,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     WhiteContainer(
                       child: TextFormField(
                         controller: _passwordController,
+                        enabled: !_isLoading,
                         obscureText: _obscurePassword,
                         decoration: InputDecoration(
                           labelText: 'Password:',
