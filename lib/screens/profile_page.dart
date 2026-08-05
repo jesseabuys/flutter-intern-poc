@@ -131,6 +131,14 @@ class _ProfilePageState extends State<ProfilePage> {
 
             ElevatedButton(
               onPressed: saveProfile,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               child: const Text("Save"),
             )
           ],
