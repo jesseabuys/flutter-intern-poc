@@ -31,9 +31,13 @@ void main() {
       ),
     );
 
+    await tester.scrollUntilVisible(
+      find.text('Contact Us'),
+      500,
+    );
     // Tap contact us button
     await tester.tap(find.text('Contact Us'));
-
+    
     await tester.pumpAndSettle();
 
     // Check contact page opened
@@ -61,7 +65,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Check we returned to login page
-    expect(find.text('Login'), findsOneWidget);
+    expect(find.text('Flutter POC'), findsOneWidget);
 
   });
 

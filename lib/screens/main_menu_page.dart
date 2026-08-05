@@ -76,7 +76,7 @@ Widget build(BuildContext context) {
               icon: Icons.login,
               label: 'Log Out',
               onTap: () => _handleLogout(context),
-              description: '',
+              description: 'Exit the app.',
             ),
 
           ],
@@ -95,6 +95,8 @@ Widget build(BuildContext context) {
   }
 }
 
+// Helper class created for displaying the different screens we can go to from the main menu.
+// Each menu card has an icon label description and can be tapped.
 class _MenuCard extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -129,6 +131,14 @@ class _MenuCard extends StatelessWidget {
             const SizedBox(height: 8),
 
             Text(description,textAlign: TextAlign.center, style: TextStyle(fontSize: 14)),
+            const SizedBox(height: 10),
+
+            const Icon(
+            Icons.arrow_forward_ios,
+            size: 16,
+            color: Colors.black54,
+            ),
+            
             const SizedBox(height: 10),
           ],
         ),

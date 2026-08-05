@@ -89,8 +89,32 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                      
-                      const Text(
+                    
+                    const SizedBox(height: 20),
+
+                    Container(
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.8),
+                        shape: BoxShape.circle,
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 12,
+                            color: Colors.black26,
+                            offset: Offset(0, 6),
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.lock,
+                        size: 70,
+                        color: Colors.indigo,
+                      ),
+                    ),
+
+                    const SizedBox(height: 18),
+
+                    const Text(
                         'Flutter POC',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -98,18 +122,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
                           fontSize: 48,
                           fontWeight: FontWeight(1000),
                         ),
-                      ),
-                    
-                    const SizedBox(height: 20),
-
-                    const Icon(Icons.login, size:110, color: Colors.indigo),
-
-                    const SizedBox(height: 18),
-
-                    const Text(
-                      'Login',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)                    
                     ),
                     const SizedBox(height: 36),
                     
@@ -117,6 +129,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     WhiteContainer(
                       child: TextFormField(
                         controller: _emailController,
+                        enabled: !_isLoading,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
                           labelText: 'Email Address:',
@@ -131,6 +144,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     WhiteContainer(
                       child: TextFormField(
                         controller: _passwordController,
+                        enabled: !_isLoading,
                         obscureText: _obscurePassword,
                         decoration: InputDecoration(
                           labelText: 'Password:',
@@ -145,26 +159,37 @@ class _MyLoginPageState extends State<MyLoginPage> {
                               },
                           ),
                         ),    
-                      // validatopr that our form key uses to check if a users input is valid
+                      // validator that our form key uses to check if a users input is valid
                           validator: ContactValidator.validatePassword
                       ),
                     ),
                     const SizedBox(height: 18),
 
                     //Login button
-                    ElevatedButton(
+                    ElevatedButton.icon(
                       onPressed: _isLoading ? null : _handleLogin,
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 18),
+                        backgroundColor: Colors.indigo,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
-                      child: _isLoading 
-                            ? const SizedBox(
-                              height: 20,
-                              width:20,
-                              child: CircularProgressIndicator(strokeWidth: 3,
-                                    color: Colors.indigo),
-                              )
-                            : const Text('Log In', style: TextStyle(fontSize:16)),
+                      icon: _isLoading
+                          ? const SizedBox(
+                              height: 18,
+                              width: 18,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.5,
+                                color: Colors.white,
+                              ),
+                            )
+                          : const Icon(Icons.login),
+                      label: Text(
+                        _isLoading ? 'Logging in...' : 'Log In',
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
                     const SizedBox(height: 16),
                   ],
