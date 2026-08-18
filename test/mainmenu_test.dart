@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:snaptest/snaptest.dart';
 
 import 'package:flutter_application_poc/screens/main_menu_page.dart';
 
@@ -40,6 +41,11 @@ void main() {
     
     await tester.pumpAndSettle();
 
+    await snap(
+      settings: SnaptestSettings.rendered(devices: [
+        Devices.android.samsungGalaxyS20,
+      ]),
+    ); // Tap send
     // Check contact page opened
     expect(find.text('Contact Us'), findsOneWidget);
 
@@ -59,11 +65,17 @@ void main() {
       find.text('Log Out'),
       500,
     );
-    
+
     await tester.tap(find.text('Log Out'));
 
     await tester.pumpAndSettle();
 
+    await snap(
+      settings: SnaptestSettings.rendered(devices: [
+        Devices.android.samsungGalaxyS20,
+      ]),
+    ); // Tap send
+    
     // Check we returned to login page
     expect(find.text('Flutter POC'), findsOneWidget);
 

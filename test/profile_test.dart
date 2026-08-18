@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:snaptest/snaptest.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_application_poc/screens/profile_page.dart';
 
 void main() {
   testWidgets('Save button saves details', (tester) async {
+    SharedPreferences.setMockInitialValues({});
     await tester.pumpWidget(
       const MaterialApp(
         home: ProfilePage(),
@@ -25,15 +28,23 @@ void main() {
       find.byType(TextFormField).at(2),
       '0731515914',
     );
+    await tester.pumpAndSettle();
+    
         // Scroll to button
     final saveButton = find.text('Save').first;
-
+    
     await tester.ensureVisible(saveButton);
+    await tester.pumpAndSettle();
 
-    // Tap send
+  
     await tester.tap(saveButton);
-    await tester.pump();
-
+    await tester.pumpAndSettle();
+    
+    await snap(
+      settings: SnaptestSettings.rendered(devices: [
+        Devices.android.samsungGalaxyS20,
+      ]),
+    ); // Tap send
   });
 
     testWidgets('Profile page displays correctly', (tester) async {
@@ -42,6 +53,11 @@ void main() {
         home: ProfilePage(),
       ),
     );
+    await snap(
+      settings: SnaptestSettings.rendered(devices: [
+        Devices.android.samsungGalaxyS20,
+      ]),
+    ); // Tap send
 
     // Check page title
     expect(find.text('Profile'), findsOneWidget);
