@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_poc/main.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:snaptest/snaptest.dart';
-
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-
+  // Check slowing down
   testWidgets('Complete app user journey', (tester) async {
 
     // Start the application
@@ -16,11 +14,6 @@ void main() {
     await tester.pumpAndSettle();
 
     // LOGIN PAGE
-    await snap(
-      settings: SnaptestSettings.rendered(devices: [
-        Devices.android.samsungGalaxyS20,
-      ]),
-    ); // Tap send
     expect(find.text('Flutter POC'), findsOneWidget);
 
     // Enter email

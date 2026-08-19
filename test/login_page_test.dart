@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:snaptest/snaptest.dart';
 
 void main() {
-  // Define a test. The TestWidgets function also provides a WidgetTester
-  // to work with. The WidgetTester allows you to build and interact
-  // with widgets in the test environment.
   testWidgets('LoginPage logins in correctly', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
@@ -40,10 +37,10 @@ void main() {
     await snap(
       settings: SnaptestSettings.rendered(devices: [
         Devices.android.samsungGalaxyS20,
+        //Devices.ios.iPhone16,
       ]),
     ); // Tap send
     await tester.pumpAndSettle();
     expect(find.text('Main Menu'), findsOneWidget);
-    // Test code goes here.
   });
 }

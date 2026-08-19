@@ -47,7 +47,7 @@ void main() {
     ); // Tap send
   });
 
-    testWidgets('Profile page displays correctly', (tester) async {
+  testWidgets('Profile page displays correctly', (tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: ProfilePage(),

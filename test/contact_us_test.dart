@@ -54,6 +54,7 @@ void main() {
       ]),
     ); // Tap send
     await tester.pumpAndSettle();
+    // Add snap
     expect(find.text('Main Menu'), findsOneWidget);
 
 
@@ -74,7 +75,7 @@ void main() {
     await tester.tap(sendButton);
 
     await tester.pump();
-
+    // Add snap
     // Check validators
     expect(
       find.text('Please enter your name.'),

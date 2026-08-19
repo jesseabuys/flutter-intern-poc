@@ -41,7 +41,7 @@ void main() {
       );
     });
 
-        test('Invalid password returns error', () {
+    test('Invalid password returns error', () {
       expect(
         ContactValidator.validatePassword('pass'),
         'Please enter a valid password.',
