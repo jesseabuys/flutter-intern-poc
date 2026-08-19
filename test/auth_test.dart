@@ -1,7 +1,7 @@
 import 'package:flutter_application_poc/services/auth_service.dart';
 import 'package:test/test.dart';
 
-//Class containing unit tests for authentication service
+// Class containing unit tests for authentication service
 void main() {
   group('Test start, Valid login, invalid email, invalid password.', () {
     // 1st test is checking the hardcoded credentials work
@@ -38,6 +38,7 @@ void main() {
       final result = await AuthService.signIn('     JohnDoe@emails.com     ', 'Password123!');
       expect(result, isTrue);
     });
+    // This should be false
 
     test('False when empty email', () async {
       final result = await AuthService.signIn('', 'Password123!');
@@ -49,6 +50,7 @@ void main() {
       expect(result, isFalse);
     });    
 
+    // 
     //test('Always false for testing CI/CD', () async {
     //  bool fail = false;
     //  expect(fail, isTrue);
