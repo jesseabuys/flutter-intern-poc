@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:snaptest/snaptest.dart';
 
 import 'package:flutter_application_poc/screens/main_menu_page.dart';
+import 'package:flutter_application_poc/screens/login_page.dart';
+import 'package:flutter_application_poc/screens/profile_page.dart';
+import 'package:flutter_application_poc/screens/contact_us_page.dart';
 
 void main() {
   testWidgets('Main menu navigates to Profile page', (tester) async {
@@ -19,7 +22,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Check profile page opened
-    expect(find.text('Profile'), findsOneWidget);
+    expect(find.byType(ProfilePage), findsOneWidget);
 
   });
 
@@ -47,7 +50,7 @@ void main() {
       ]),
     ); // Tap send
     // Check contact page opened
-    expect(find.text('Contact Us'), findsOneWidget);
+    expect(find.byType(ContactUsPage), findsOneWidget);
 
   });
 
@@ -77,7 +80,7 @@ void main() {
     ); // Tap send
     
     // Check we returned to login page
-    expect(find.text('Flutter POC'), findsOneWidget);
+    expect(find.byType(MyLoginPage), findsOneWidget);
 
   });
 

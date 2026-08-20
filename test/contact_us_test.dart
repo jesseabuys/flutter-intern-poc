@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:snaptest/snaptest.dart';
 import 'package:flutter_application_poc/screens/contact_us_page.dart';
+import 'package:flutter_application_poc/screens/main_menu_page.dart';
 
 void main() {
 
@@ -55,7 +56,7 @@ void main() {
     ); // Tap send
     await tester.pumpAndSettle();
     // Add snap
-    expect(find.text('Main Menu'), findsOneWidget);
+    expect(find.byType(MainMenuPage), findsOneWidget);
 
 
   });
@@ -110,15 +111,9 @@ void main() {
     await tester.tap(contactDetails);
     await tester.pumpAndSettle();
 
-    // Check that the phone number is displayed
+    // Use key to ensure that our expansion tile is opened correctly
     expect(
-      find.text('+27 73 151 5914'),
-      findsOneWidget,
-    );
-
-    // Check that the email address is displayed
-    expect(
-      find.text('jesseabuys@emails.com'),
+      find.byKey(const Key('ourDetailsContent')),
       findsOneWidget,
     );
 

@@ -137,6 +137,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                         ),
                         children: [
                           Padding(
+                            key: const Key('ourDetailsContent'),
                             padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

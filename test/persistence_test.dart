@@ -1,4 +1,4 @@
-import 'package:flutter_application_poc/services/user_profile.dart';
+import 'package:flutter_application_poc/services/persistence_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
 
