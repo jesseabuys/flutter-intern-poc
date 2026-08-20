@@ -41,7 +41,7 @@ void main() {
     );
     // Tap contact us button
     await tester.tap(find.text('Contact Us'));
-    
+    // Add snap
     await tester.pumpAndSettle();
 
     await snap(

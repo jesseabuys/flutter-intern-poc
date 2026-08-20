@@ -34,7 +34,7 @@ void main() {
       name: 'Information in login',
       settings: SnaptestSettings.rendered(
         devices: [
-          Devices.android.samsungGalaxyS20,
+          Devices.android.samsungGalaxyS20
         ],
       ),
     );
