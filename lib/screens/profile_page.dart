@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_poc/SharedWidgets/gradient_scaffold.dart';
-import 'package:flutter_application_poc/services/user_profile.dart';
+import 'package:flutter_application_poc/services/persistence_service.dart';
 import 'package:flutter_application_poc/SharedWidgets/white_container.dart';
 
 // Profile screen for our app that contains three editable text fields and uses shared preferences to save the

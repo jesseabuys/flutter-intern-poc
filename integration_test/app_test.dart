@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_poc/main.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_application_poc/screens/login_page.dart';
+import 'package:flutter_application_poc/screens/profile_page.dart';
+import 'package:flutter_application_poc/screens/contact_us_page.dart';
+import 'package:flutter_application_poc/screens/main_menu_page.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +18,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // LOGIN PAGE
-    expect(find.text('Flutter POC'), findsOneWidget);
+    expect(find.byType(MyLoginPage), findsOneWidget);
 
     // Enter email
     await tester.enterText(
@@ -38,7 +42,7 @@ void main() {
 
     // MAIN MENU
 
-    expect(find.text('Main Menu'), findsOneWidget);
+    expect(find.byType(MainMenuPage), findsOneWidget);
     expect(find.text('Profile'), findsOneWidget);
     expect(find.text('Contact Us'), findsOneWidget);
     expect(find.text('Log Out'), findsOneWidget);
@@ -49,7 +53,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     await tester.pumpAndSettle();
 
-    expect(find.text('Profile'), findsOneWidget);
+    expect(find.byType(ProfilePage), findsOneWidget);
     expect(find.text('Your Details'), findsOneWidget);
 
     // Check profile fields exist
@@ -83,14 +87,14 @@ void main() {
     await tester.pageBack();
     await tester.pumpAndSettle();
 
-    expect(find.text('Main Menu'), findsOneWidget);
+    expect(find.byType(MainMenuPage), findsOneWidget);
 
     // CONTACT US PAGE
 
     await tester.tap(find.text('Contact Us'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Contact Us'), findsOneWidget);
+    expect(find.byType(ContactUsPage), findsOneWidget);
     expect(find.text('Get in touch'), findsOneWidget);
     expect(find.text('Ask Us Anything'), findsOneWidget);
 
@@ -144,7 +148,7 @@ void main() {
     await tester.pumpAndSettle();
     
     // Should now be back at Main Menu
-    expect(find.text('Main Menu'), findsOneWidget);
+    expect(find.byType(MainMenuPage), findsOneWidget);
 
     // LOG OUT
 
@@ -152,6 +156,6 @@ void main() {
     await tester.pumpAndSettle();
 
     // Should return to Login
-    expect(find.text('Flutter POC'), findsOneWidget);
+    expect(find.byType(MyLoginPage), findsOneWidget);
   });
 }
