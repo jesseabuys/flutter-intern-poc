@@ -1,11 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:snaptest/snaptest.dart';
 
-import 'package:flutter_application_poc/screens/main_menu_page.dart';
 import 'package:flutter_application_poc/screens/family_page.dart';
 import 'package:flutter_application_poc/screens/profile_page.dart';
-import 'package:flutter_application_poc/screens/contact_us_page.dart';
 
 void main() {
   testWidgets('Policy information expands and collapses', (tester) async {

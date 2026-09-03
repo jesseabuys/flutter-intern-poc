@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_poc/screens/main_menu_page.dart';
 import 'package:flutter_application_poc/screens/profile_page.dart';
-import 'package:flutter_application_poc/screens/login_page.dart';
-import 'package:flutter_application_poc/screens/profile_page.dart';
 import 'package:flutter_application_poc/screens/contact_us_page.dart';
-import 'package:flutter_application_poc/screens/family_page.dart';
 
 class MyFamilyPage extends StatefulWidget {
   const MyFamilyPage({super.key});
@@ -270,7 +267,7 @@ class _MyFamilyPageState extends State<MyFamilyPage> {
         borderRadius: BorderRadius.circular(6),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.20),
+            color: Colors.black.withValues(alpha: 0.20),
             blurRadius: 7,
             offset: const Offset(0, 3),
           ),
@@ -412,7 +409,7 @@ class _MyFamilyPageState extends State<MyFamilyPage> {
         Container(
           height: 17,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.18),
+            color: Colors.black.withValues(alpha: 0.18),
             borderRadius: BorderRadius.circular(10),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 7),
@@ -503,7 +500,7 @@ class _MyFamilyPageState extends State<MyFamilyPage> {
           borderRadius: BorderRadius.circular(6),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.12),
+              color: Colors.black.withValues(alpha: 0.12),
               blurRadius: 6,
               offset: const Offset(0, 3),
             ),

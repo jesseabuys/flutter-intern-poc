@@ -2,11 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutter_application_poc/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_application_poc/screens/login_page.dart';
 import 'package:flutter_application_poc/screens/profile_page.dart';
-import 'package:flutter_application_poc/screens/contact_us_page.dart';
-import 'package:flutter_application_poc/screens/main_menu_page.dart';
 import 'package:flutter_application_poc/screens/family_page.dart';
 
 
