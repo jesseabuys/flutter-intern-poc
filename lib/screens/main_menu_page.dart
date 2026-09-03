@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_poc/screens/login_page.dart';
 import 'package:flutter_application_poc/screens/profile_page.dart';
 import 'package:flutter_application_poc/screens/contact_us_page.dart';
+import 'package:flutter_application_poc/screens/family_page.dart';
 import 'package:flutter_application_poc/SharedWidgets/gradient_scaffold.dart';
 
 class MainMenuPage extends StatelessWidget {
@@ -71,7 +72,23 @@ Widget build(BuildContext context) {
             ),
 
             const SizedBox(height: 24),
-            
+
+            _MenuCard(
+              icon: Icons.family_restroom,
+              label: 'My Family',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyFamilyPage(),
+                  ),
+                );
+              },
+              description: 'BestMed page',
+            ),
+
+            const SizedBox(height: 24),
+
             _MenuCard(
               icon: Icons.login,
               label: 'Log Out',

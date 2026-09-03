@@ -38,7 +38,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
     try {
       // Since we are hardcoding the login we wait two seconds to mimic connecting to a server
       await Future.delayed(const Duration(seconds: 2));
-      
+    
       // Call our helper method signIn to validate that the email we are entering is valid
       final success = await AuthService.signIn(
        _emailController.text,
@@ -70,6 +70,40 @@ class _MyLoginPageState extends State<MyLoginPage> {
     // If no errors stop loading
     } finally {
 
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
+  }
+
+  Future<void> _handleBiometricLogin() async {
+    setState(() => _isLoading = true);
+
+    try {
+      final isLoggedIn = await AuthService.isLoggedIn();
+
+      if (!mounted) return;
+
+      if (isLoggedIn) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MainMenuPage(),
+          ),
+        );
+      } else {
+        Messenger.showMessage(
+          context,
+          'No saved login found.',
+        );
+      }
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed: $e')),
+      );
+    } finally {
       if (mounted) {
         setState(() => _isLoading = false);
       }
@@ -192,6 +226,22 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       ),
                     ),
                     const SizedBox(height: 16),
+                    ElevatedButton.icon(
+                      onPressed: _isLoading ? null : _handleBiometricLogin,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.indigo,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      icon: const Icon(Icons.fingerprint),
+                      label: const Text(
+                        'Login with Biometric',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
                   ],
                 ),
               ),
