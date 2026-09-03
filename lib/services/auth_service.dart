@@ -1,11 +1,34 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 class AuthService {
-  static const String _validEmail = 'JohnDoe@emails.com';
-  static const String _password = 'Password123!';
+  static const String _tokenKey = 'loginToken';
+  static const String _demoToken = 'POC_LOGIN_TOKEN_2026_ABC123';
 
-  static Future<bool> signIn(String email, String password) async {
-    await Future.delayed(const Duration(seconds: 2));
+  static Future<bool> signIn(
+    String email,
+    String password,
+  ) async {
+    if (email == 'JohnDoe@emails.com' &&
+        password == 'Password123!') {
 
-    return email.trim() == _validEmail &&
-           password == _password;
+      final prefs = await SharedPreferences.getInstance();
+
+      await prefs.setString(
+        _tokenKey,
+        _demoToken,
+      );
+
+      return true;
+    }
+
+    return false;
+  }
+
+  static Future<bool> isLoggedIn() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString(_tokenKey);
+
+    return token == _demoToken;
   }
 }

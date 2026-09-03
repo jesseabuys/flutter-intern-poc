@@ -1,8 +1,11 @@
 import 'package:flutter_application_poc/services/auth_service.dart';
-import 'package:test/test.dart';
-
+import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // Class containing unit tests for authentication service
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  SharedPreferences.setMockInitialValues({});
   group('Test start, Valid login, invalid email, invalid password.', () {
     // 1st test is checking the hardcoded credentials work
     test('True for valid credentials', () async {
@@ -34,11 +37,10 @@ void main() {
       expect(result, isFalse);
     });
 
-    test('True when there are extra spaces in my email', () async {
+    test('False when there are extra spaces in my email', () async {
       final result = await AuthService.signIn('     JohnDoe@emails.com     ', 'Password123!');
-      expect(result, isTrue);
+      expect(result, isFalse);
     });
-    // This should be false
 
     test('False when empty email', () async {
       final result = await AuthService.signIn('', 'Password123!');

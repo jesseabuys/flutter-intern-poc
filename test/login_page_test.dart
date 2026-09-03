@@ -3,8 +3,10 @@ import 'package:flutter_application_poc/screens/login_page.dart';
 import 'package:flutter_application_poc/screens/main_menu_page.dart';
 import 'package:flutter/material.dart';
 import 'package:snaptest/snaptest.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  SharedPreferences.setMockInitialValues({});
   testWidgets('LoginPage logins in correctly', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -42,7 +44,7 @@ void main() {
     // Tap the "Log In" button to submit the form.
     await tester.tap(find.text('Log In'));
 
-    // Wait for navigation and animations to finish.
+    // Start the async login method.
     await tester.pumpAndSettle();
 
     // Snapshot the resulting screen after a successful login attempt.
@@ -50,7 +52,7 @@ void main() {
       settings: SnaptestSettings.rendered(
         devices: [
           Devices.android.samsungGalaxyS20,
-          // Devices.ios.iPhone16,
+          //Devices.ios.iPhone16,
         ],
       ),
     );
